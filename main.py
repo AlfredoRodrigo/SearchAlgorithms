@@ -93,12 +93,12 @@ def ns_heuristics(graph, node, goal, visited=None):
 
     for i in adj[1:]:
         heu_i = heuristics[goal][i]
-        if heu_i == np.nan:
+        if np.isnan(heu_i):
             heu_i = heuristics[i][goal]
 
         heu_min = heuristics[goal][min]
-        if heu_min == np.nan:
-            heu_min = heuristics[i][goal]
+        if np.isnan(heu_min):
+            heu_min = heuristics[min][goal]
 
         if graph[node][i]['weight'] + heu_i < graph[node][min]['weight'] + heu_min:
             min = i
