@@ -17,7 +17,7 @@ heuristics = pd.read_csv("./data/heuristics.csv", header=0, index_col=0)
 
 
 def dfs_paths(graph, start, goal, path=None):
-    """Algoritmo de busca em largura
+    """Algoritmo de busca em profundidade
     Retorna um generator contendo todos os caminhos encontados na busca"""
     if path is None:
         path = [start]
@@ -28,7 +28,7 @@ def dfs_paths(graph, start, goal, path=None):
 
 
 def bfs_paths(graph, start, goal):
-    """Algoritmo de busca em profundidade
+    """Algoritmo de busca em largura
         Retorna um generator contendo todos os caminhos encontados na busca"""
     queue = [(start, [start])]
     while queue:
@@ -151,10 +151,10 @@ if __name__ == '__main__':
             input("Qual algorítmo usar?\n1 - Busca em largura\n2 - Busca em Profundidade\n3 - Best-first\n4 - A*\n"))
         if alg == 1:
             plt.title("Busca em largura\n{} para {}".format(start, goal))
-            res = next(dfs_paths(graph, start, goal))
+            res = next(bfs_paths(graph, start, goal))
         elif alg == 2:
             plt.title("Busca em profundidade\n{} para {}".format(start, goal))
-            res = next(bfs_paths(graph, start, goal))
+            res = next(dfs_paths(graph, start, goal))
         elif alg == 3:
             plt.title("Busca em \"melhor primeiro\"\n{} para {}".format(start, goal))
             res = best_first(graph, start, goal)
